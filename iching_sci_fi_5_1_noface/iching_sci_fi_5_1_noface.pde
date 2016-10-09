@@ -85,11 +85,11 @@ void mousePressed() {
 
   /*
   tint(255, 180);
-   //image(face7, 0, 0, width, height);
+   image(face7, 0, 0, width, height);
    pushMatrix();
    translate(width, 0);
    scale(-1, 1);
-   //image(face4, 0, 0, width, height);
+   image(face4, 0, 0, width, height);
    popMatrix();
    */
 
@@ -104,7 +104,7 @@ void mousePressed() {
     text(iching[row1][col1], width/2, height/2);
 
     tint(255, 180);
-    //image(face[int(random(11))] /*face[iching[row1][col1]]*/, 0, 0, width, height);
+    image(face[int(random(11))] /*face[iching[row1][col1]]*/, 0, 0, width, height);
   } else {
     text(iching[row1][col1]+" / "+iching[row2][col2], width/2, height/2);
 
@@ -113,7 +113,7 @@ void mousePressed() {
     pushMatrix();
     translate(width, 0);
     scale(-1, 1);
-    //image(face[int(random(11))] /*face[iching[row2][col2]]*/, 0, 0, width, height);
+    image(face[int(random(11))] /*face[iching[row2][col2]]*/, 0, 0, width, height);
     popMatrix();
   }
 }
