@@ -99,7 +99,7 @@ void mousePressed() {
   println(face);
 
   // number text for reference
-  fill(b);
+  fill(255, 200);
   if (iching[row1][col1] == iching[row2][col2]) {
     text(iching[row1][col1], width/2, height/2);
 
