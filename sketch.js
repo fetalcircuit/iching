@@ -22,7 +22,6 @@
 //                        {44, 32, 48, 18, 46, 57, 50, 28},
 //                        {13, 55, 63, 22, 36, 37, 30, 49},
 //                        {10, 54, 60, 41, 19, 61, 38, 58}  };
-
 var bit = [
   "#ffffff", //white - heaven
   "#ffff00", //yellow - thunder
@@ -115,51 +114,40 @@ var earth;
 var savedTime;
 var totalTime = 5000;
 
-var iching = [[1, 34, 5, 26, 11, 9, 14, 43],
-  [25, 51, 3, 27, 24, 42, 21, 17]
-  ,
-  [6, 40, 29, 4, 7, 59, 64, 47]
-  ,
-  [33, 62, 39, 52, 15, 53, 56, 31]
-  ,
-  [12, 16, 8, 23, 2, 20, 35, 45]
-  ,
-  [44, 32, 48, 18, 46, 57, 50, 28]
-  ,
-  [13, 55, 63, 22, 36, 37, 30, 49]
-  ,
-  [10, 54, 60, 41, 19, 61, 38, 58]];
+var iching = [
+  [1, 34, 5, 26, 11, 9, 14, 43],
+  [25, 51, 3, 27, 24, 42, 21, 17],
+  [6, 40, 29, 4, 7, 59, 64, 47],
+  [33, 62, 39, 52, 15, 53, 56, 31],
+  [12, 16, 8, 23, 2, 20, 35, 45],
+  [44, 32, 48, 18, 46, 57, 50, 28],
+  [13, 55, 63, 22, 36, 37, 30, 49],
+  [10, 54, 60, 41, 19, 61, 38, 58]
+];
 
 // [columns][rows] of the trigram matrix
 var tri = [
   [
     1, 1, 1
-  ]
-  ,
+  ],
   [
     1, 0, 0
-  ]
-  ,
+  ],
   [
     0, 1, 0
-  ]
-  ,
+  ],
   [
     0, 0, 1
-  ]
-  ,
+  ],
   [
     0, 0, 0
-  ]
-  ,
+  ],
   [
     0, 1, 1
-  ]
-  ,
+  ],
   [
     1, 0, 1
-  ]
-  ,
+  ],
   [
     1, 1, 0
   ]
@@ -217,8 +205,15 @@ var bg;
 
 var num = 3.984375;
 
+var h = 64;
 
-function preload(){
+//for text elements
+var p1;
+var p2;
+var lines = [];
+var txt = [];
+
+function preload() {
   heaven = loadImage("data/heaven.png");
   lake = loadImage("data/lake.png");
   fire = loadImage("data/fire.png");
@@ -228,12 +223,29 @@ function preload(){
   mountain = loadImage("data/mountain.png");
   earth = loadImage("data/earth.png");
 
+  //lines1 = loadStrings('data/1.txt');
+  //lines2 = loadStrings('data/2.txt');
+
   //font = loadFont("data/TwCenMT-Bold-48.vlw");
   //font = textFont('Helvetica');
+
+
+  for (var i = 0; i < h; i++) {
+    lines[i] = loadStrings("data/"+(i+1)+".txt");
+  }
+
 }
 
 function setup() {
   createCanvas(450, 600);
+
+  // join() joins the elements of an array
+  // Here we pass in a line break to retain formatting
+
+  for (var i = 0; i < h; i++) {
+    txt[i] = join(lines[i], "<br/><br/>");
+  }
+
   savedTime = millis();
 
   m = color(255, 100); // color of moving line
@@ -248,8 +260,8 @@ function setup() {
 
   //textFont(font, 32);
 
-  textAlign(CENTER);
-  text("[click here]", width/2, height/2);
+  textAlign(CENTER, CENTER);
+  text("ONLINE ICHING\nASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", width / 2, height / 2);
 }
 
 function draw() {
@@ -275,7 +287,7 @@ function mousePressed() {
   hexNum(tri, tri_1a, tri_1b, tri_2a, tri_2b);
 
   //generates background color from hex #
-  var c = bk[(iching[row1][col1])-1];
+  var c = bk[(iching[row1][col1]) - 1];
   fill(color(c));
   //print(hue[(iching[row1][col1])-1]);
   //fill(c);
@@ -292,11 +304,29 @@ function mousePressed() {
   // number text for reference
   fill(255, 200);
   if (iching[row1][col1] == iching[row2][col2]) {
-    text(iching[row1][col1], width/2, height/2);
+    text(iching[row1][col1], width / 2, height / 2);
+
+    // paragraph for reading
+p1 = createP(txt[(iching[row1][col1])-1]).addClass("text1");
+//p = createP((iching[row1][col1])+".txt");
+p1.position(450, 0);
+p1.size(830, 570);
 
     tint(255, 180);
   } else {
-    text(iching[row1][col1]+" / "+iching[row2][col2], width/2, height/2);
+    text(iching[row1][col1] + " / " + iching[row2][col2], width / 2, height / 2);
+
+//p = createP(iching[row1][col1] + " / " + iching[row2][col2], width / 2, height / 2);
+//var para2 = table.getRow(iching[row1][col1]+1); //get() for the specific column value you want
+//var para3 = table.getRow(iching[row2][col2]+1);
+//p = createP(para2 + " / " + para3);
+p1 = createP(txt[(iching[row1][col1])-1]).addClass("text1");
+p1.position(450, 0);
+p1.size(400, 570);
+
+p2 = createP(txt[(iching[row2][col2])-1]).addClass("text2");
+p2.position(880, 0);
+p2.size(400, 570);
 
     tint(255, 180);
     push();
@@ -328,7 +358,7 @@ function hexigram() {
     }
     // this finds the sum of an individual toss
     var sum = 0;
-    for (var i=0; i<toss.length; i++) {
+    for (var i = 0; i < toss.length; i++) {
       sum += toss[i];
     }
     // these totals indicate whether lines are "moving" or "at rest"
@@ -344,12 +374,12 @@ function hexigram() {
       s1 = 0;
       s2 = 0;
       print("_ _ 7 | O");
-        overlay[j] = sum;
+      overlay[j] = sum;
     } else if (sum == 9) {
       s1 = 1;
       s2 = 0;
       print("_+_ 9 | I/O");
-        overlay[j] = sum;
+      overlay[j] = sum;
     } else {
       s1 = 0;
       s2 = 1;
@@ -364,7 +394,7 @@ function hexigram() {
 }
 
 //function hexNum (var[][] t, var[] t1, var[] t2, var[] t3, var[] t4) {
-function hexNum (t, t1, t2, t3, t4) {
+function hexNum(t, t1, t2, t3, t4) {
 
   for (var i = 0; i < 8; i++) {
     if (t1[0] == t[i][0] && t1[1] == t[i][1] && t1[2] == t[i][2]) {
@@ -400,17 +430,17 @@ function hexNum (t, t1, t2, t3, t4) {
 
 function hexOverlay(hOver, b) {
 
-  for (var i=0; i<hOver.length; i++) {
+  for (var i = 0; i < hOver.length; i++) {
     // these totals indicate whether lines are "moving" or "at rest"
 
-    var h = (height-(7*b))/(hOver.length); // height of the lines
+    var h = (height - (7 * b)) / (hOver.length); // height of the lines
 
-    var y = (height-b-((i+1)*h))-(b*i); // y-coordinate of the lines
+    var y = (height - b - ((i + 1) * h)) - (b * i); // y-coordinate of the lines
 
-    var sl = width-2*b; // width of solid hex line
-    var bl = (width-2*b)/2.5; //width of broken line
+    var sl = width - 2 * b; // width of solid hex line
+    var bl = (width - 2 * b) / 2.5; //width of broken line
 
-    var xbl = b+sl-(bl); // x-coordinate of second dash of broken line
+    var xbl = b + sl - (bl); // x-coordinate of second dash of broken line
 
     strokeWeight(3);
     noFill();
@@ -440,17 +470,17 @@ function hexOverlay(hOver, b) {
 function triImage() {
 
   var imgX1 = 0;
-  var imgY1 = height*.4;
+  var imgY1 = height * .4;
   var imgX2 = 0;
   var imgY2 = 30;
   var imgW = width;
-  var imgH = height*.6;
+  var imgH = height * .6;
 
- //int h1 = (iching[row1][col1])-1;
- //int h2 = (iching[row2][col2])-1;
+  //int h1 = (iching[row1][col1])-1;
+  //int h2 = (iching[row2][col2])-1;
 
- var t1 = bit[col2];
- var t2 = bit[row2];
+  var t1 = bit[col2];
+  var t2 = bit[row2];
 
   // top trigram .png loads:
   if (tri_1b[0] == 1 && tri_1b[1] == 1 && tri_1b[2] == 1) {
