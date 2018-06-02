@@ -261,7 +261,7 @@ function setup() {
   //textFont(font, 32);
 
   textAlign(CENTER, CENTER);
-  text("ONLINE ICHING\nASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", width / 2, height / 2);
+  text("ONLINE ICHING\n\nCLICK HERE TO ASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", width / 2, height / 2);
 }
 
 function draw() {
