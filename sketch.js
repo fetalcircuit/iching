@@ -304,6 +304,7 @@ function mousePressed() {
   // number text for reference
   fill(255, 200);
   if (iching[row1][col1] == iching[row2][col2]) {
+    noStroke();
     text(iching[row1][col1], width / 2, height / 2);
 
     // paragraph for reading
@@ -314,6 +315,7 @@ p1.size(830, 570);
 
     tint(255, 180);
   } else {
+    noStroke();
     text(iching[row1][col1] + " / " + iching[row2][col2], width / 2, height / 2);
 
 //p = createP(iching[row1][col1] + " / " + iching[row2][col2], width / 2, height / 2);
