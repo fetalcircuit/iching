@@ -213,6 +213,9 @@ var p2;
 var lines = [];
 var txt = [];
 
+let buttonN;
+let buttonR;
+
 function preload() {
   heaven = loadImage("data/heaven.png");
   lake = loadImage("data/lake.png");
@@ -261,7 +264,17 @@ function setup() {
   //textFont(font, 32);
 
   textAlign(CENTER, CENTER);
-  text("ONLINE ICHING\n\nCLICK HERE TO ASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", width / 2, height / 2);
+  text("ONLINE ICHING\n\nASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", width / 2, height / 2);
+
+  buttonN = createButton("receive guidance");
+  buttonN.position(10, 10);
+  buttonN.mousePressed(receiveGuidance);
+  buttonN.show();
+
+  buttonR = createButton("receive a new reading");
+  buttonR.position(10, 10);
+  buttonR.mousePressed(resetSketch);
+  buttonR.hide();
 }
 
 function draw() {
@@ -275,7 +288,9 @@ function draw() {
 // Has five seconds passed?
 //  if (passedTime > totalTime) {
 
-function mousePressed() {
+function receiveGuidance() {
+  buttonN.hide();
+  buttonR.show();
   //generates the hexigrams:
   hexigram();
   //populates the trigrams from generated hexigrams:
@@ -564,4 +579,26 @@ function trigram(h1, h2) {
   print(tri_1b);
   print(tri_2a);
   print(tri_2b);
+}
+
+
+function resetSketch() {
+  // fill color for background:
+buttonR.hide();
+buttonN.show();
+p1.hide();
+p2.hide();
+  bg = color(198, 231, 206);
+
+  //PImage[] face = new PImage[8];
+
+  background(bg);
+
+  //textFont(font, 32);
+fill(0);
+  textAlign(CENTER, CENTER);
+  text("ICHING ONLINE\n\nASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", width / 2, height / 2);
+
+  //let button = createButton("receive guidance");
+  //  button.mousePressed(receiveGuidance);
 }
