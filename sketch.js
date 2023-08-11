@@ -240,7 +240,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(450, 600);
+  createCanvas((windowWidth/3)+(windowWidth/30), windowHeight);
 
   // join() joins the elements of an array
   // Here we pass in a line break to retain formatting
@@ -264,8 +264,7 @@ function setup() {
   //textFont(font, 32);
 
   textAlign(CENTER, CENTER);
-  text("ONLINE ICHING\n\nASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", width / 2, height / 2);
-
+  text("ONLINE ICHING\n\nASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", 0, height / 3, (windowWidth/3)+(windowWidth/30));
   buttonN = createButton("receive guidance");
   buttonN.position(10, 10);
   buttonN.mousePressed(receiveGuidance);
@@ -325,8 +324,8 @@ function receiveGuidance() {
     // paragraph for reading
 p1 = createP(txt[(iching[row1][col1])-1]).addClass("text1");
 //p = createP((iching[row1][col1])+".txt");
-p1.position(450, 0);
-p1.size(830, 570);
+p1.position((windowWidth/3)+(windowWidth/30), 0);
+p1.size((windowWidth/3)*2, windowHeight);
 
     tint(255, 180);
   } else {
@@ -338,12 +337,13 @@ p1.size(830, 570);
 //var para3 = table.getRow(iching[row2][col2]+1);
 //p = createP(para2 + " / " + para3);
 p1 = createP(txt[(iching[row1][col1])-1]).addClass("text1");
-p1.position(450, 0);
-p1.size(400, 570);
+p1.position((windowWidth/3)+(windowWidth/30), 0);
+//p1.width(windowWidth/3);
+p1.size(((windowWidth/3)-30)-(windowWidth/60), windowHeight);
 
 p2 = createP(txt[(iching[row2][col2])-1]).addClass("text2");
-p2.position(880, 0);
-p2.size(400, 570);
+p2.position(((windowWidth/3)*2)+(windowWidth/60), 0);
+p2.size(((windowWidth/3)-30)-(windowWidth/60), windowHeight);
 
     tint(255, 180);
     push();
@@ -351,6 +351,7 @@ p2.size(400, 570);
     scale(-1, 1);
     pop();
   }
+
 }
 
 function hexigram() {
@@ -597,8 +598,14 @@ p2.hide();
   //textFont(font, 32);
 fill(0);
   textAlign(CENTER, CENTER);
-  text("ICHING ONLINE\n\nASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", width / 2, height / 2);
+  text("ICHING ONLINE\n\nASK A QUESTION AND RECEIVE GUIDANCE\n\nTips:\n\nThe question should be something that currently preoccupies you.\nMake sure your official question and your real question are one and the same.\nThe timeframe should be over the next few weeks or months.\n\nChanging signs mean you have TWO readings.\nTHE FIRST READING is how things currently are.\nTHE SECOND READING is how things will be after the period of change is over.", 0, height / 3, (windowWidth/3)+(windowWidth/30));
 
   //let button = createButton("receive guidance");
   //  button.mousePressed(receiveGuidance);
+}
+
+function keyPressed() {
+  if (keyCode === ENTER) {
+    saveCanvas('myCanvas', 'png');
+  }
 }
