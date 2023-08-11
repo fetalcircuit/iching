@@ -240,7 +240,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(450, 600);
+  createCanvas(windowWidth/3, 600);
 
   // join() joins the elements of an array
   // Here we pass in a line break to retain formatting
