@@ -246,7 +246,7 @@ function setup() {
   // Here we pass in a line break to retain formatting
 
   for (var i = 0; i < h; i++) {
-    txt[i] = join(lines[i], "<br/><br/>");
+    txt[i] = join(lines[i], "<br/>");
   }
 
   savedTime = millis();
